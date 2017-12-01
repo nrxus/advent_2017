@@ -1,3 +1,5 @@
+mod solvers;
+
 fn main() {
-    println!("Hello, world!");
+    println!("one: {}", solvers::one::a(solvers::one::INPUT));
 }
