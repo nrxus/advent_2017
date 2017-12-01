@@ -11,6 +11,16 @@ pub fn a(input: &str) -> u32 {
         .sum()
 }
 
+pub fn b(input: &str) -> u32 {
+    let input: Vec<_> = input.chars().filter_map(|c| c.to_digit(10)).collect();
+    let offsetted = input.iter().skip(input.len() / 2).chain(input.iter());
+    input
+        .iter()
+        .zip(offsetted)
+        .map(|(a, b)| if a == b { *a } else { 0 })
+        .sum()
+}
+
 #[cfg(test)]
 mod test {
     use super::*;
@@ -21,17 +31,42 @@ mod test {
     }
 
     #[test]
-    fn a_equal() {
+    fn a_all() {
         assert_eq!(a("1111"), 4);
     }
 
     #[test]
-    fn a_different() {
+    fn a_none() {
         assert_eq!(a("1234"), 0);
     }
 
     #[test]
-    fn a_loops() {
+    fn a_ends() {
         assert_eq!(a("91212129"), 9);
+    }
+
+    #[test]
+    fn b_perfect() {
+        assert_eq!(b("1212"), 6);
+    }
+
+    #[test]
+    fn b_none() {
+        assert_eq!(b("1212"), 6);
+    }
+
+    #[test]
+    fn b_loops() {
+        assert_eq!(b("123425"), 4);
+    }
+
+    #[test]
+    fn b_all() {
+        assert_eq!(b("123123"), 12);
+    }
+
+    #[test]
+    fn b_other() {
+        assert_eq!(b("12131415"), 4);
     }
 }
