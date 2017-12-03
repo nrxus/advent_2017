@@ -1,5 +1,5 @@
 mod solvers;
 
 fn main() {
-    println!("one: {}", solvers::one::b(solvers::one::INPUT));
+    println!("one: {}", solvers::two::b(solvers::two::INPUT));
 }
