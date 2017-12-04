@@ -10,9 +10,9 @@ pub fn a(input: i32) -> i32 {
     if nearest_sq == input {
         sqrt - 1
     } else {
-        let focal_a = nearest_sq + 1 + sqrt / 2;
-        let focal_b = focal_a + sqrt + sqrt % 2;
-        let focal_dist = sqrt / 2 + sqrt % 2;
+        let focal_dist = (sqrt + 1) / 2;
+        let focal_a = nearest_sq + sqrt / 2 + 1;
+        let focal_b = nearest_sq + sqrt + focal_dist + 1;
         focal_dist + cmp::min((input - focal_a).abs(), (focal_b - input).abs())
     }
 }
